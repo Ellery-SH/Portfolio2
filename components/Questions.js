@@ -40,7 +40,7 @@ export const Quizquestions = [
         questionText: 'What is the only sea without any coasts?',
         answerOptions: [
             { answerText: 'Mediterranean Sea', isCorrect: false },
-            { answerText: 'Sargasso Sea', isCorrect: false },
+            { answerText: 'Dead Sea', isCorrect: false },
             { answerText: 'Adritic Sea', isCorrect: false },
             { answerText: 'Sargasso Sea', isCorrect: true },
         ],

@@ -7,8 +7,8 @@ import {styles} from '../components/styles.js'
 import Timer from '../components/timer.js'
 
 
-export default function QuizLayout() {
-	const questions = Quizquestions.filter(item => item.category==='Geography')
+export default function QuizLayout( {navigation, route}) {
+	const questions = Quizquestions.filter(item => item.category===route.params.category)
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
@@ -30,22 +30,26 @@ export default function QuizLayout() {
 		<Card>
 			{showScore ? (
 				
-					<Text>You scored {score} out of {questions.length}</Text>
+
+				<View style={styles.appButtonView}>
+
+					<Text>You scored {score} out of {questions.length}</Text> <AppButton title = "Take another quiz!" onPress={() => {navigation.navigate('Home')}}></AppButton>
+					</View>
 				
 			) : (
 				<>
 					<View>
 						
 							<Text style={styles.questionhead}>Question {currentQuestion + 1} of {questions.length}</Text>
-							<Timer> </Timer>
+							<Timer NextQuestion={() => handleAnswerOptionClick(false)}> </Timer>
 						
 						<Text style={styles.questionFont}>
                             {questions[currentQuestion].questionText}
                         </Text>
 					</View>
 					<View style={styles.appButtonView}>
-						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<AppButton style={styles.buttonstyle} title = {answerOption.answerText} onPress={() => handleAnswerOptionClick(answerOption.isCorrect)}></AppButton>
+						{questions[currentQuestion].answerOptions.map((answerOption, index) => (
+							<AppButton key={index } style={styles.buttonstyle} title = {answerOption.answerText} onPress={() => handleAnswerOptionClick(answerOption.isCorrect)}></AppButton>
 						))}
 					</View>
 				</>

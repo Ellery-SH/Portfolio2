@@ -30,6 +30,7 @@ import { styles } from '../components/styles.js';
         screen: 'Mythology',
         category: 'Mythology',
       }
+
   
   ]
 
@@ -37,7 +38,7 @@ import { styles } from '../components/styles.js';
 export default function Home({ navigation }) {
     let [screens, setScreens] = useState(screenList)
     let renderButton = ({ item }) => (<View>
-        <AppButton key={item.category} title={item.name} onPress={() => {navigation.push(item.screen)}} ></AppButton>
+        <AppButton key={item.category} title={item.name} onPress={() => {navigation.navigate('quiz', {category: item.category})}} ></AppButton>
     </View>)
 
     return(
@@ -48,4 +49,4 @@ export default function Home({ navigation }) {
         </View>
     )
 }
-   
+  
